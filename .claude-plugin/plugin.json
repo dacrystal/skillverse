@@ -1,0 +1,9 @@
+{
+  "name": "skillverse",
+  "description": "Personal skills collection",
+  "version": "1.0.0",
+  "author": { "name": "dacrystal" },
+  "homepage": "https://github.com/dacrystal/skillverse",
+  "repository": "https://github.com/dacrystal/skillverse",
+  "license": "MIT"
+}

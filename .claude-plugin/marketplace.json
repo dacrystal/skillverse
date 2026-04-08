@@ -1,0 +1,13 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "skillverse",
+  "description": "Personal skills marketplace",
+  "owner": { "name": "dacrystal" },
+  "plugins": [
+    {
+      "name": "skillverse",
+      "description": "Personal skills collection",
+      "source": "./"
+    }
+  ]
+}

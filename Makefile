@@ -7,5 +7,7 @@ bump-version:
 	@tmp=$$(mktemp) && \
 		jq --arg v "$(VERSION)" '.version = $$v' .claude-plugin/plugin.json > "$$tmp" && \
 		mv "$$tmp" .claude-plugin/plugin.json
+	git add .claude-plugin/plugin.json
+	git commit -m "chore: bump version to v$(VERSION)"
 	git tag "v$(VERSION)"
 	@echo "Tagged v$(VERSION)"

@@ -14,6 +14,7 @@ plugin install skillverse@skillverse
 ## Skills
 
 - **squash-and-separate-docs** — Squash feature commits and sync `docs/superpowers/` changes to a dedicated branch. Use when finishing a branch that includes docs/superpowers changes.
+- **standard-readme** — Create or audit a README to comply with the [standard-readme](https://github.com/richardlitt/standard-readme) specification.
 
 ## Adding Skills
 

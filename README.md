@@ -11,6 +11,15 @@ plugin marketplace add skillverse https://github.com/dacrystal/skillverse
 plugin install skillverse@skillverse
 ```
 
+## Usage
+
+After installation, skills are available in Claude Code. Invoke them via slash commands:
+
+```
+/skillverse:standard-readme
+/skillverse:squash-and-separate-docs
+```
+
 ## Skills
 
 - **squash-and-separate-docs** — Squash feature commits and sync `docs/superpowers/` changes to a dedicated branch. Use when finishing a branch that includes docs/superpowers changes.
@@ -25,3 +34,9 @@ skills/
 └── your-skill-name/
     └── SKILL.md
 ```
+
+## License
+
+MIT © Nasser Alansari
+
+See [LICENSE](LICENSE).

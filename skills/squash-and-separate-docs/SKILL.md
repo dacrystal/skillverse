@@ -77,10 +77,10 @@ The squash commit is ready on `<feature-branch>`. Before presenting options, che
 
 Present options:
 
-> "Squash commit ready on `<feature-branch>`. Suggested remote branch name: `<suggested-name>`.
->
-> **A) Direct** — merge into `<base-branch>` locally (no push)
-> **B) PR** — push to remote as `<suggested-name>` (or specify your own) and open a PR"
+Squash commit ready on `<feature-branch>`. Suggested remote branch name: `<suggested-name>`.
+
+**A) Direct** — merge into `<base-branch>` locally (no push)
+**B) PR** — push to remote as `<suggested-name>` (or specify your own) and open a PR
 
 Wait for user choice before continuing.
 

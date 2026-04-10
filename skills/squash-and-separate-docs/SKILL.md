@@ -67,15 +67,20 @@ git commit -m "<squashed commit message>"
 
 ### Step 7: STOP — ask user how to land
 
-The squash commit is ready on `<feature-branch>`. Present the options:
+The squash commit is ready on `<feature-branch>`. Before presenting options, check the current branch name:
 
-> "Squash commit ready on `<feature-branch>`. How would you like to land it?
+- If it is a **single word with no `/`** (e.g. `dev`, `fix`, `feature`), auto-suggest a remote branch name:
+  1. Parse the squash commit message for a conventional prefix (`feat`, `fix`, `refactor`, `chore`, `docs`, etc.)
+  2. Slugify the description: lowercase, spaces → hyphens, strip punctuation
+  3. Compose `<prefix>/<slug>` — e.g. `feat/unescape-xtrace`
+  4. Default to `feat/` if no conventional prefix found
+
+Present options:
+
+> "Squash commit ready on `<feature-branch>`. Suggested remote branch name: `<suggested-name>`.
 >
-> **A) Direct** — merge into `<base-branch>` locally and push
-> **B) PR** — push `<feature-branch>` to remote (optionally under a different name) and open a PR
->
-> For option B you can control the remote branch name:
-> `git push origin <feature-branch>:<remote-name>`  e.g. `feat/unescape-xtrace`"
+> **A) Direct** — merge into `<base-branch>` locally (no push)
+> **B) PR** — push to remote as `<suggested-name>` (or specify your own) and open a PR"
 
 Wait for user choice before continuing.
 
@@ -83,13 +88,10 @@ Wait for user choice before continuing.
 
 **Option A — Direct:**
 ```bash
-# If remote exists: rebase first
-git fetch origin && git rebase origin/<base-branch>  # skip if no remote
-
+git rebase <base-branch>               # replay squash commit onto local base (while on feature branch)
 git checkout <base-branch>
-git pull 2>/dev/null || true
-git merge <feature-branch>
-git push origin <base-branch>
+git merge --ff-only <feature-branch>   # guaranteed ff after rebase
+# no push — user handles remote separately
 ```
 
 **Option B — PR:**
@@ -125,7 +127,8 @@ git worktree remove $DOCS_WORKTREE
 | Mistake | Fix |
 |---|---|
 | Worktree path under repo root | Use `/tmp/worktrees/` — repo root area has permission denied |
-| Running `git fetch origin` when no remote | Check `git remote` first; skip fetch+rebase entirely if empty |
+| Rebasing feature against `origin/<base-branch>` in Option A | Use local `<base-branch>` — preserves local-only commits instead of silently dropping them |
+| Pushing in Option A | Don't — leave remote to the user |
 | cp AFTER squash/unstage | cp in Step 3, before touching the index |
 | Forgetting to unstage and rm docs/superpowers | Step 5 — without this it ends up in the squash commit |
 | Running cleanup from inside worktree | Step 10 must run from main repo (`cd $MAIN_REPO` first) |
@@ -134,8 +137,8 @@ git worktree remove $DOCS_WORKTREE
 ## Quick Reference
 
 ```
-remote?   → if yes: fetch+rebase before landing; if no: skip
-worktree? → /tmp/worktrees/docs-superpowers (never under repo root)
-order:    cp → squash → unstage+rm → commit → STOP (ask user) → land → worktree-commit → cleanup
-PR name:  git push origin local-branch:feat/my-feature-name
+Option A:  rebase onto local base → ff-only merge → no push (user handles remote)
+Option B:  rebase onto origin base → push → PR (suggest feat/<slug> if branch has no /)
+worktree:  /tmp/worktrees/docs-superpowers (never under repo root)
+order:     cp → squash → unstage+rm → commit → STOP (ask user) → land → worktree-commit → cleanup
 ```

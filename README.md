@@ -17,12 +17,12 @@ After installation, skills are available in Claude Code. Invoke them via slash c
 
 ```
 /skillverse:standard-readme
-/skillverse:squash-and-separate-docs
+/skillverse:git-squash-separate-superpowers-docs
 ```
 
 ## Skills
 
-- **squash-and-separate-docs** — Squash feature commits and sync `docs/superpowers/` changes to a dedicated branch. Use when finishing a branch that includes docs/superpowers changes.
+- **git-squash-separate-superpowers-docs** — Squash feature commits and sync `docs/superpowers/` changes to a dedicated branch. Use when finishing a branch that includes docs/superpowers changes.
 - **standard-readme** — Create or audit a README to comply with the [standard-readme](https://github.com/richardlitt/standard-readme) specification.
 
 ## Adding Skills

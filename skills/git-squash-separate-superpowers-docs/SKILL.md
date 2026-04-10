@@ -1,6 +1,6 @@
 ---
-name: squash-and-separate-docs
-description: Use when finishing a development branch that has docs/superpowers/ changes and you need to squash commits while keeping docs/superpowers in its own branch/worktree. Use as Option 5 from finishing-a-development-branch when docs/superpowers/ changes are present.
+name: git-squash-separate-superpowers-docs
+description: Use when finishing a development branch that has docs/superpowers/ changes and you need to squash commits while keeping docs/superpowers in its own branch/worktree.
 ---
 
 # Squash and Separate docs/superpowers
